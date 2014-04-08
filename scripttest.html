@@ -1,0 +1,99 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="ja" dir="ltr"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7 " lang="ja" dir="ltr"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="ja" dir="ltr"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="ja" dir="ltr"> <!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<title>soccer test</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="keywords" content="" />
+	<meta name="description" content="">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:type" content="">
+	<meta property="og:site_name" content="">
+</head>
+<body>
+
+<section>
+	<h1></h1>
+	<table>
+		<tr>
+			<th>自国の名前</th>
+			<td class="name-oc"></td>
+		</tr>
+		<tr>
+			<th>所属チーム</th>
+			<td class="team"></td>
+		</tr>
+		<tr>
+			<th>誕生日</th>
+			<td class="dob"></td>
+		</tr>
+		<tr>
+			<th>生まれ</th>
+			<td class="pob"></td>
+		</tr>
+		<tr>
+			<th>年齢</th>
+			<td class="age"></td>
+		</tr>
+		<tr>
+			<th>身長</th>
+			<td class="ht"></td>
+		</tr>
+		<tr>
+			<th>国籍</th>
+			<td class="natnlty"></td>
+		</tr>
+		<tr>
+			<th>ポジション</th>
+			<td class="posi"></td>
+		</tr>
+		<tr>
+			<th>利き足</th>
+			<td class="ft"></td>
+		</tr>
+		<tr>
+			<th>市場価値</th>
+			<td class="mv"></td>
+		</tr>
+		<tr>
+			<th>エージェント</th>
+			<td class="agent"></td>
+		</tr>
+	</table>
+</section>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+  function kimonoCallback(data) {
+	$.each(data.results, function( index, collection1 ) {
+			$.each(collection1, function( index, object ) {
+				$('h1').append(object.name);
+				$('.name-oc').append(object.nameInOwnCountry);
+				$('.team').append(object.team.text);
+				$('.dob').append(object.dateOfBirth.text);
+				$('.pob').append(object.placeOfBirth);
+				$('.age').append(object.age);
+				$('.ht').append(object.height + ' m');
+				$('.natnlty').append(object.nationality);
+				$('.posi').append(object.position);
+				$('.ft').append(object.foot);
+				$('.mv').append(object.marketValue);
+				$('.agent').append(object.agent.text);
+			});
+		});
+  }
+
+  $.ajax({
+    "url":"http://www.kimonolabs.com/api/2x5ui2qy?apikey=9e4c8940f38b9aa9f7e74bb0e3431014&callback=kimonoCallback",
+    "crossDomain":true,
+    "dataType":"jsonp"
+});
+</script>
+
+</body>
+</html>
